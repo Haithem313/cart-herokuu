@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.courzelo.courzelo_core.CartApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.128 s - in com.courzelo.courzelo_core.CartApplicationTests
