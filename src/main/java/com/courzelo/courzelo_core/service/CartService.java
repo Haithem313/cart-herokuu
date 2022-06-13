@@ -31,7 +31,7 @@ public class CartService {
 	
 	@Autowired
 	RestTemplateBuilder restTemplateBuilder;
-	private static final String GET_USER_BY_ID_API = "http://localhost:8087/api/auth/getUser/{id}";
+	private static final String GET_USER_BY_ID_API = "https://springgateway.herokuapp.com/auth-herokuu/api/auth/getUser/{id}";
 	
 	public Course addCourse(Course course){
 		return courseRepository.save(course);
@@ -44,12 +44,12 @@ public class CartService {
 		return user;
 	}
 	
-	public Cart addCart(Cart cart, Long id, Long idCourse) throws Exception {
-		Course course = courseRepository.findCourseByIdCourse(idCourse);
+	public Cart addCart(Cart cart, Long id, String idCourse) throws Exception {
+		Course course = courseRepository.findCourseById(idCourse);
 		User user = getUserByRestTemplate(id);
 		List<Cart> carts = findCartByUser(id);
 		for (int i = 0; i < carts.size(); i++) {
-			if(carts.get(i).getCourse().getIdCourse() == course.getIdCourse()){
+			if(carts.get(i).getCourse().getId() == course.getId()){
 				throw new Exception("You have already add this course to your cart");
 			}
 		}

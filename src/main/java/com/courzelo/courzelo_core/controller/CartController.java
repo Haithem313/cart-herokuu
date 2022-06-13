@@ -44,7 +44,7 @@ public class CartController {
     }
 
     @PostMapping("/add/{id}/{idCourse}")
-    public ResponseEntity<Cart> addCart(@RequestBody Cart cart, @PathVariable("id") long id, @PathVariable("idCourse") long idCourse) throws Exception {
+    public ResponseEntity<Cart> addCart(@RequestBody Cart cart, @PathVariable("id") long id, @PathVariable("idCourse") String idCourse) throws Exception {
     	Cart newCart = cartService.addCart(cart, id, idCourse);
         return new ResponseEntity<>(newCart, HttpStatus.CREATED);
     }
