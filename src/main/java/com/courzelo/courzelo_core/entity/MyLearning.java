@@ -26,7 +26,9 @@ public class MyLearning {
 	@Id
 	private long idMyLearning;
 	
-	private User user;
+	//private User user;
+
+	private long idUser;
 	
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 	private List<Course> courses;

@@ -33,7 +33,7 @@ public class MyLearningService {
 	
 	@Autowired
 	RestTemplateBuilder restTemplateBuilder;
-	private static final String GET_USER_BY_ID_API = "http://localhost:8087/api/auth/getUser/{id}";
+	private static final String GET_USER_BY_ID_API = "https://springgateway.herokuapp.com/auth-herokuu/api/auth/getUser/{id}";
 	
 	public User getUserByRestTemplate(long id){
 		Map<String, Long> param = new HashMap<>();
@@ -52,23 +52,23 @@ public class MyLearningService {
 			}
 			myLearning.setIdMyLearning(sequenceGeneratorService.generateSequence(MyLearning.SEQUENCE_NAME));
 			myLearning.setCourses(courses);
-			myLearning.setUser(user);
+			myLearning.setIdUser(user.getId());
 			return myLearningRepository.save(myLearning);
 	}
 	
 	public MyLearning findMyLearningByUser(long id){
 		User user = getUserByRestTemplate(id);
-		return myLearningRepository.findMyLearningByUserId(user.getId());
+		return myLearningRepository.findMyLearningByIdUser(user.getId());
 	}
 	
 	public boolean existsMyLearningByUser(long id){
-		User user = getUserByRestTemplate(id);
-		return myLearningRepository.existsByUser(user);
+		//User user = getUserByRestTemplate(id);
+		return myLearningRepository.existsByIdUser(id);
 	}
 	
 	public MyLearning updateMyLearning(long id){
 		User user = getUserByRestTemplate(id);
-		MyLearning myLearning = myLearningRepository.findMyLearningByUser(user);
+		MyLearning myLearning = myLearningRepository.findMyLearningByIdUser(user.getId());
 		List<Course> courses = new ArrayList<Course>();
 		List<Cart> carts = cartService.findCartByUser(id);
 		courses.addAll(myLearning.getCourses());

@@ -7,10 +7,10 @@ import com.courzelo.courzelo_core.entity.User;
 
 public interface MyLearningRepository extends MongoRepository<MyLearning, Long>{
 	
-	MyLearning findMyLearningByUser(User user);
+	MyLearning findMyLearningByIdUser(long idUser);
 	
-	boolean existsByUser(User user);
+	boolean existsByIdUser(long idUser);
 	
-	MyLearning findMyLearningByUserId(long id);
+	//MyLearning findMyLearningByIdUser(long id);
 
 }
